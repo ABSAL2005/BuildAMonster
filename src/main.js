@@ -24,4 +24,4 @@ let config = {
     scene: [Monster]
 }
 
-const game = new Phaser.Game(config);
+const game = new Phaser.Game(config); 
