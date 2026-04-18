@@ -6,6 +6,8 @@ class Monster extends Phaser.Scene {
         //Create constants for the monster location
         this.bodyX = 300;
         this.bodyY = 350;
+        this.spaceKey1 = null;
+        this.spaceKey2 = null;
     }
 
     // Use preload to load art and sound assets before the scene starts running.
@@ -65,8 +67,8 @@ class Monster extends Phaser.Scene {
 
         let fKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         let sKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-        let aKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-        let dKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.spaceKey1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.spaceKey2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         // Add event listeners for the D and S keys where D is dimple and S is smile
         sKey.on('down', () => {
@@ -79,41 +81,40 @@ class Monster extends Phaser.Scene {
             my.sprite.smile.visible = false;
             my.sprite.fangs.visible = true;
         });
-        // Add event listeners for the A and D keys where A moves left and D moves right
-        aKey.on('down', () => {
-            console.log("A key was pressed (event listener)");
-            my.sprite.body.x -= 50;
-            my.sprite.arm1.x -= 50;
-            my.sprite.arm2.x -= 50;
-            my.sprite.leg1.x -= 50;
-            my.sprite.leg2.x -= 50;
-            my.sprite.eye1.x -= 50;
-            my.sprite.mouth.x -= 50;
-            my.sprite.smile.x -= 50;
-            my.sprite.fangs.x -= 50;
-            my.sprite.horn1.x -= 50;
-            my.sprite.horn2.x -= 50;
-            my.sprite.antenna1.x -= 50;
-        });
-        dKey.on('down', () => {
-            console.log("D key was pressed (event listener)");
-            my.sprite.body.x += 50;
-            my.sprite.arm1.x += 50;
-            my.sprite.arm2.x += 50;
-            my.sprite.leg1.x += 50;
-            my.sprite.leg2.x += 50;
-            my.sprite.eye1.x += 50;
-            my.sprite.mouth.x += 50;
-            my.sprite.smile.x += 50;
-            my.sprite.fangs.x += 50;
-            my.sprite.horn1.x += 50;
-            my.sprite.horn2.x += 50;
-            my.sprite.antenna1.x += 50;
-        });
     }
 
     update() {
         let my = this.my;    // create an alias to this.my for readability
+        // Check for key presses in the update loop for continuous movement
+        if (this.spaceKey1.isDown) {
+            console.log("A key is being held down (update loop)");
+            my.sprite.body.x -= 10;
+            my.sprite.arm1.x -= 10;
+            my.sprite.arm2.x -= 10;
+            my.sprite.leg1.x -= 10;
+            my.sprite.leg2.x -= 10;
+            my.sprite.eye1.x -= 10;
+            my.sprite.mouth.x -= 10;
+            my.sprite.smile.x -= 10;
+            my.sprite.fangs.x -= 10;
+            my.sprite.horn1.x -= 10;
+            my.sprite.horn2.x -= 10;
+            my.sprite.antenna1.x -= 10;
+        }
+        if (this.spaceKey2.isDown) {
+            console.log("D key is being held down (update loop)");
+            my.sprite.body.x += 10;
+            my.sprite.arm1.x += 10;
+            my.sprite.arm2.x += 10;
+            my.sprite.leg1.x += 10;
+            my.sprite.leg2.x += 10;
+            my.sprite.eye1.x += 10;
+            my.sprite.mouth.x += 10;
+            my.sprite.smile.x += 10;
+            my.sprite.fangs.x += 10;
+            my.sprite.horn1.x += 10;
+            my.sprite.horn2.x += 10;
+            my.sprite.antenna1.x += 10;
+        }
     }
-
 }
